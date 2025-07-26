@@ -1,0 +1,162 @@
+[
+  {
+    "id": 1,
+    "nombre": "Carlos Gómez",
+    "dni": "30123456",
+    "licencia": "L-123456",
+    "telefono": "+54 9 3764 111111",
+    "email": "carlos.gomez@remises.com",
+    "auto": {
+      "marca": "Toyota",
+      "modelo": "Corolla",
+      "anio": 2020,
+      "color": "Blanco",
+      "patente": "AB123CD",
+      "imagen": "https://imgs.search.brave.com/vrWTLgDHWkOqJVkbWX6krO5Kx47CZvnF2M3hhIBw8aQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTM3/Mjg5NzU4MC9lcy9m/b3RvL3ZlbmRhLmpw/Zz9zPTYxMng2MTIm/dz0wJms9MjAmYz1X/S0ZFZW9MeUtFcnkz/Q1BOcjFmODBXZDhM/d2N6dkZEX0k1elV6/Q21wOW5nPQ"
+    }
+  },
+  {
+    "id": 2,
+    "nombre": "Laura Fernández",
+    "dni": "29876543",
+    "licencia": "L-654321",
+    "telefono": "+54 9 3764 222222",
+    "email": "laura.fernandez@remises.com",
+    "auto": {
+      "marca": "Chevrolet",
+      "modelo": "Onix",
+      "anio": 2021,
+      "color": "Negro",
+      "patente": "CD456EF",
+      "imagen": "https://imgs.search.brave.com/-9p_lcM6dkYWLR8UkeAr83WevA0TVhPYum2-TvGw2Yo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9odHRw/Mi5tbHN0YXRpYy5j/b20vRF9OUV9OUF8y/WF85NjA1NTAtTUxB/ODMwNTQyNjMyNThf/MDMyMDI1LUUud2Vi/cA"
+    }
+  },
+  {
+    "id": 3,
+    "nombre": "Luis Martínez",
+    "dni": "27011234",
+    "licencia": "L-789123",
+    "telefono": "+54 9 3764 333333",
+    "email": "luis.martinez@remises.com",
+    "auto": {
+      "marca": "Volkswagen",
+      "modelo": "Voyage",
+      "anio": 2019,
+      "color": "Gris",
+      "patente": "EF789GH",
+      "imagen": "https://imgs.search.brave.com/tyC6H38rwZOxuxfXChBiIfA2VcwC3I7xp_zcdkK5wBA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9odHRw/Mi5tbHN0YXRpYy5j/b20vRF9OUV9OUF8y/WF84MjAxMjYtTUNP/ODMxMzIzMTU5MThf/MDMyMDI1LUUud2Vi/cA"
+    }
+  },
+  {
+    "id": 4,
+    "nombre": "Andrea López",
+    "dni": "31567890",
+    "licencia": "L-456789",
+    "telefono": "+54 9 3764 444444",
+    "email": "andrea.lopez@remises.com",
+    "auto": {
+      "marca": "Fiat",
+      "modelo": "Cronos",
+      "anio": 2022,
+      "color": "Rojo",
+      "patente": "GH012IJ",
+      "imagen": "https://imgs.search.brave.com/OF8zkEa03FRKALkehc9i5jNNa4dvE6dsPiNtt8D97cQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9odHRw/Mi5tbHN0YXRpYy5j/b20vRF9OUV9OUF8y/WF82NjE1NDQtTUxB/ODUzOTY0NTU4NDZf/MDYyMDI1LUUud2Vi/cA"
+    }
+  },
+  {
+    "id": 5,
+    "nombre": "Jorge Ríos",
+    "dni": "28999888",
+    "licencia": "L-321987",
+    "telefono": "+54 9 3764 555555",
+    "email": "jorge.rios@remises.com",
+    "auto": {
+      "marca": "Renault",
+      "modelo": "Logan",
+      "anio": 2021,
+      "color": "Azul",
+      "patente": "IJ345KL",
+      "imagen": "https://imgs.search.brave.com/TA3TvSjhOrQ2bAratAtW6Iz3L2ctgINx2Eq9GEWgbF0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9odHRw/Mi5tbHN0YXRpYy5j/b20vRF9OUV9OUF8y/WF82OTE0MjQtTUxB/NzkzNTE2NjE0MjVf/MDkyMDI0LUUud2Vi/cA"
+    }
+  },
+  {
+    "id": 6,
+    "nombre": "Marcela Díaz",
+    "dni": "31234567",
+    "licencia": "L-741258",
+    "telefono": "+54 9 3764 666666",
+    "email": "marcela.diaz@remises.com",
+    "auto": {
+      "marca": "Peugeot",
+      "modelo": "208",
+      "anio": 2020,
+      "color": "Gris Oscuro",
+      "patente": "KL678MN",
+      "imagen": "https://imgs.search.brave.com/07DPMds-RziDAWbuizfV3TuYJUn4ZijQcqUnnKpGz3k/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9odHRw/Mi5tbHN0YXRpYy5j/b20vRF9OUV9OUF8y/WF83NjUzNDEtTUxB/Nzk2MDc5MzMxMzhf/MTAyMDI0LUUud2Vi/cA"
+    }
+  },
+  {
+    "id": 7,
+    "nombre": "Ricardo Suárez",
+    "dni": "30112233",
+    "licencia": "L-963852",
+    "telefono": "+54 9 3764 777777",
+    "email": "ricardo.suarez@remises.com",
+    "auto": {
+      "marca": "Nissan",
+      "modelo": "Versa",
+      "anio": 2018,
+      "color": "Blanco",
+      "patente": "MN901OP",
+      "imagen": "https://imgs.search.brave.com/KS4L8BcclXNgoWgLcEc7MThFSbhiKO3HZPop2TuWhtY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMucHJkLmthdmFr/LmlvL2V5SmlkV05y/WlhRaU9pSnJZWFpo/YXkxcGJXRm5aWE1p/TENKclpYa2lPaUpw/YldGblpYTXZORE13/TURRekwwVllWRVZT/U1U5U0xXWnliMjUw/VTJsa1pWQnBiRzkw/VG1WaGNpMHhOelV6/TVRBek5USTVPVGcw/TG1wd1pXY2lMQ0ps/WkdsMGN5STZleUp5/WlhOcGVtVWlPbnNp/ZDJsa2RHZ2lPalUw/TUN3aWFHVnBaMmgw/SWpvek1UQXNJbUpo/WTJ0bmNtOTFibVFp/T25zaWNpSTZNalUx/TENKbklqb3lOVFVz/SW1JaU9qSTFOU3dp/WVd4d2FHRWlPakI5/ZlgxOQ"
+    }
+  },
+  {
+    "id": 8,
+    "nombre": "Soledad Castro",
+    "dni": "28765432",
+    "licencia": "L-852963",
+    "telefono": "+54 9 3764 888888",
+    "email": "soledad.castro@remises.com",
+    "auto": {
+      "marca": "Ford",
+      "modelo": "Ka",
+      "anio": 2022,
+      "color": "Negro",
+      "patente": "OP234QR",
+      "imagen": "https://imgs.search.brave.com/ExgMemAaAzIPnRYKzigq77cEF3nar2RKX5IfbI60ZSw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9odHRw/Mi5tbHN0YXRpYy5j/b20vRF9OUV9OUF84/MzgyNDEtTUxBNzUx/NzM3MjAyOThfMDMy/MDI0LVcud2VicA"
+    }
+  },
+  {
+    "id": 9,
+    "nombre": "Héctor Ramírez",
+    "dni": "29881122",
+    "licencia": "L-159753",
+    "telefono": "+54 9 3764 999999",
+    "email": "hector.ramirez@remises.com",
+    "auto": {
+      "marca": "Hyundai",
+      "modelo": "HB20",
+      "anio": 2021,
+      "color": "Gris Plata",
+      "patente": "QR567ST",
+      "imagen": "https://imgs.search.brave.com/leH8m8ljjb-JnRTDqEjH1qf-9g0pC4mEzsX4gjVjHFI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9odHRw/Mi5tbHN0YXRpYy5j/b20vRF9OUV9OUF8y/WF82MjUwMjYtTUNP/ODA2ODc3Mzk1NzNf/MTEyMDI0LUUud2Vi/cA"
+    }
+  },
+  {
+    "id": 10,
+    "nombre": "Natalia Vera",
+    "dni": "31009988",
+    "licencia": "L-456123",
+    "telefono": "+54 9 3764 101010",
+    "email": "natalia.vera@remises.com",
+    "auto": {
+      "marca": "Kia",
+      "modelo": "Rio",
+      "anio": 2019,
+      "color": "Rojo",
+      "patente": "ST890UV",
+      "imagen": "https://imgs.search.brave.com/c94yVniuRy2eqIpp83xq40_421288Hf_crQqvQsCq70/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9odHRw/Mi5tbHN0YXRpYy5j/b20vRF9OUV9OUF8y/WF83NTE4NzgtTUxN/ODIxNTgzMjMyMzFf/MDEyMDI1LUUta2lh/LXJpby0xNi1seC1z/ZWRhbi1tdC53ZWJw"
+    }
+  }
+]
