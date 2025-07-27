@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { ListTaxiContext } from "../context/ListTaxiContext";
 import { ListTaxi } from "../components/organismos/ListTaxi";
+import { Nav } from "../components/organismos/Nav";
+import { BtnTop } from "../components/moleculas/BtnTop";
 
 export const Home = () => {
   const { listTaxiCp } = useContext(ListTaxiContext);
@@ -8,8 +10,9 @@ export const Home = () => {
 
   return (
     <>
-      <h1>home</h1>
+      <Nav />
       <ListTaxi listTaxi={listTaxiCp} />
+      <BtnTop />
     </>
   );
 };

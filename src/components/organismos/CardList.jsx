@@ -50,6 +50,11 @@ const ContainerCard = styled.div`
   border-radius: 16px;
   padding: 20px;
   gap: 20px;
+
+  @media (max-width: 1010px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const ContainerData = styled.div`
