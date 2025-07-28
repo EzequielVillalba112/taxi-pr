@@ -10,7 +10,7 @@ export const Home = () => {
 
   return (
     <>
-      <Nav />
+      
       <ListTaxi listTaxi={listTaxiCp} />
       <BtnTop />
     </>

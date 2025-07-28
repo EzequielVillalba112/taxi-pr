@@ -4,53 +4,81 @@ import { SlLogin } from "react-icons/sl";
 import { FaUser } from "react-icons/fa";
 import { FaUserPlus } from "react-icons/fa6";
 import { useState } from "react";
+import Logo from "../../assets/logo-taxi.png";
+import { Link } from "react-router-dom";
 
 export const Nav = () => {
   const [open, setOpen] = useState(false);
 
+  const menuItems = [
+    {
+      to: "/",
+      label: "Inicio",
+      icon: <IoHome size={20} />,
+    },
+    {
+      to: "/login",
+      label: "Ingresar",
+      icon: <FaUser size={20} />,
+    },
+    {
+      to: "/register",
+      label: "Registrarse",
+      icon: <FaUserPlus size={20} />,
+    },
+  ];
+
   return (
     <NavStyle>
+      <div className="logo">
+        <img src={Logo} alt="Logo" />
+      </div>
+
       <div className="menu-toggle" onClick={() => setOpen(!open)}>
         <span className={`bar-list top ${open ? "open" : ""}`} />
         <span className={`bar-list middle ${open ? "open" : ""}`} />
         <span className={`bar-list bottom ${open ? "open" : ""}`} />
       </div>
-      Menú
-      <section className={`menu-container ${open ? "open" : ""}`}>
-        <div className="menu-list">
-          <IoHome size={20} />
-          Inicio
-        </div>
-        <div className="menu-list">
-          <SlLogin size={20} />
-          Ingresar
-        </div>
-        <div className="menu-list">
-          <FaUserPlus size={20} />
-          Registrarse
-        </div>
-        <div className="menu-list">
-          <FaUser size={20} />
-          Perfil
-        </div>
-      </section>
+
+      <div className={`menu-container ${open ? "open" : ""}`}>
+        {menuItems.map((item, index) => (
+          <div className="menu-list" key={index}>
+            <Link to={item.to} onClick={() => setOpen(false)}>
+              {item.icon}
+              {item.label}
+            </Link>
+          </div>
+        ))}
+      </div>
     </NavStyle>
   );
 };
 
 const NavStyle = styled.nav`
   font-weight: 800;
-   color: #4b4b4b;
-  background-color: #ffd500;
+  color: #4b4b4b;
+  background-color: #e6e6e6;
   padding: 0 20px;
   border-radius: 10px;
   margin-bottom: 20px;
   display: flex;
   align-items: center;
-  height: 2.5rem;
+  height: 90px;
   position: sticky;
-  cursor: pointer;
   justify-content: space-between;
+
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+  }
+
+  .logo img {
+    width: 250px;
+    height: 90px;
+    object-fit: cover;
+  }
 
   .menu-toggle {
     display: flex;
@@ -58,6 +86,7 @@ const NavStyle = styled.nav`
     justify-content: center;
     gap: 4px;
     height: 100%;
+    cursor: pointer;
   }
 
   .bar-list {
@@ -82,34 +111,48 @@ const NavStyle = styled.nav`
   }
 
   .menu-container {
-    background-color: #ffd500;
-    color: #4b4b4b;
+    background-color: #e6e6e6;
     border-radius: 10px;
     position: absolute;
     width: 100%;
     left: 0;
-    top: 130%;
+    top: 120%;
     overflow: hidden;
     max-height: 0;
     transition: max-height 0.4s ease;
+    z-index: 100;
   }
 
   .menu-container.open {
-    max-height: 200px;
+    max-height: max-content;
     transition: max-height 0.5s ease;
+    z-index: 100;
   }
 
   .menu-list {
     padding: 8px 10px;
+    height: 90px;
     gap: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     transition: background-color 0.2s;
+    cursor: pointer;
+    z-index: 100;
+
+    a {
+      width: 100%;
+      height: 100%;
+      color: #4b4b4b;
+      text-decoration: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
   }
 
   .menu-list:hover {
-    color: #ffff;
-    background-color: rgb(145, 125, 30);
+    background-color: #ffd500;
   }
 `;
