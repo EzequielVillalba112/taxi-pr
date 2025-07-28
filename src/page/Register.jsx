@@ -157,6 +157,11 @@ const FormContainer = styled.div`
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   color: #4b4b4b;
+
+   @media (max-width: 680px) {
+    margin: auto;
+    width: -webkit-fill-available;
+  }
 `;
 
 const Title = styled.h2`
@@ -172,5 +177,9 @@ const StyledForm = styled.form`
   button {
     grid-column: span 2;
     margin-top: 20px;
+  }
+  @media (max-width: 680px) {
+    display: flex;
+    flex-direction: column;
   }
 `;

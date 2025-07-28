@@ -8,7 +8,7 @@ export function ListTaxiContextProvider({ children }){
   useEffect(() => {
     const fetchList = async () => {
       try {
-        const res = await fetch("/DataPr.json");
+        const res = await fetch("./DataPr.json");
         if (!res.ok) throw new Error("Network response was not ok");
         const data = await res.json();
 
