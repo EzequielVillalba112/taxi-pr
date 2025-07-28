@@ -419,4 +419,4 @@ Please change the parent <Route path="${B}"> to <Route path="${B==="/"?"*":`${B}
     grid-column: span 2;
     margin-top: 20px;
   }
-`;function Fg(){return H.jsx(H.Fragment,{children:H.jsxs(rp,{children:[H.jsx(wg,{}),H.jsxs(Mv,{children:[H.jsx(Mi,{path:"/",element:H.jsx(Xg,{})}),H.jsx(Mi,{path:"/login",element:H.jsx(Vg,{})}),H.jsx(Mi,{path:"/register",element:H.jsx(Jg,{})})]})]})})}Yy.createRoot(document.getElementById("root")).render(H.jsx(D.StrictMode,{children:H.jsx(Iv,{children:H.jsx(Fg,{})})}));
+`;function Fg(){return H.jsx(H.Fragment,{children:H.jsxs(rp,{children:[H.jsx(wg,{}),H.jsxs(Mv,{children:[H.jsx(Mi,{index:!0,element:H.jsx(Xg,{})}),H.jsx(Mi,{path:"/login",element:H.jsx(Vg,{})}),H.jsx(Mi,{path:"/register",element:H.jsx(Jg,{})})]})]})})}Yy.createRoot(document.getElementById("root")).render(H.jsx(D.StrictMode,{children:H.jsx(Iv,{children:H.jsx(Fg,{})})}));
