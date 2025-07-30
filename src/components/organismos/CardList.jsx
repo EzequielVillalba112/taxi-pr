@@ -2,8 +2,8 @@ import styled from "styled-components";
 import imgUserLogo from "../../assets/user.png";
 import { ImgUser } from "../atomos/ImgUser";
 import { FaPhoneAlt } from "react-icons/fa";
-import { FaCar } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
+import { EstateCardList } from "../moleculas/EstateCardList";
 
 export const CardList = ({ data }) => {
   const sendWhatsApp = () => {
@@ -18,18 +18,14 @@ export const CardList = ({ data }) => {
     <ContainerCard>
       <ImgUser src={imgUserLogo} />
       <ContainerData>
-        <h2>{data.nombre}</h2>
+        <h2>
+          {data.nombre} {data.apellido}
+        </h2>
         <DataTaxi>
-          <p>
-            <FaCar />
-            <span>
-              {data.auto.marca} {data.auto.modelo}
-            </span>
-          </p>
           <p>
             <FaPhoneAlt /> <span>{data.telefono}</span>
           </p>
-          <p>Activo</p>
+          <EstateCardList state={data.estado} />
         </DataTaxi>
         <ContainerButton>
           <a href="#">Detalles</a>

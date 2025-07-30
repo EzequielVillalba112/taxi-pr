@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { CardList } from "./CardList";
 
-export const ListTaxi = ({ listTaxi }) => {
+export const ListTaxi = ({ data }) => {
   return (
     <>
       <ContainerList>
-        {listTaxi?.map((taxi, index) => (
+        {data?.map((taxi, index) => (
           <CardList key={index} data={taxi} />
         ))}
       </ContainerList>
@@ -14,6 +14,7 @@ export const ListTaxi = ({ listTaxi }) => {
 };
 
 const ContainerList = styled.div`
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
@@ -25,7 +26,7 @@ const ContainerList = styled.div`
   @media (max-width: 980px) {
     grid-template-columns: repeat(2, 1fr);
   }
-   @media (max-width: 680px) {
+  @media (max-width: 680px) {
     grid-template-columns: repeat(1, 1fr);
   }
 `;
