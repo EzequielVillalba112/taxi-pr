@@ -17,12 +17,12 @@ export const Nav = () => {
       icon: <IoHome size={20} />,
     },
     {
-      to: "/login",
+      to: "taxi-pr/login",
       label: "Ingresar",
       icon: <FaUser size={20} />,
     },
     {
-      to: "/register",
+      to: "taxi-pr/register",
       label: "Registrarse",
       icon: <FaUserPlus size={20} />,
     },

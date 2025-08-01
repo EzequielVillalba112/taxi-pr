@@ -12,9 +12,9 @@ function App() {
       <Nav />
       <Routes>
         <Route index element={<Home />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="taxi-pr/" element={<Home />} />
+        <Route path="taxi-pr/login" element={<Login />} />
+        <Route path="taxi-pr/register" element={<Register />} />
       </Routes>
       <ReactQueryDevtools initialIsOpen={false} />
     </>

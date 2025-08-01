@@ -4,6 +4,7 @@ import { ImgUser } from "../atomos/ImgUser";
 import { FaPhoneAlt } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
 import { EstateCardList } from "../moleculas/EstateCardList";
+import { FaLocationDot } from "react-icons/fa6";
 
 export const CardList = ({ data }) => {
   const sendWhatsApp = () => {
@@ -24,6 +25,9 @@ export const CardList = ({ data }) => {
         <DataTaxi>
           <p>
             <FaPhoneAlt /> <span>{data.telefono}</span>
+          </p>
+           <p>
+            <FaLocationDot /> <span>{data.localidad}</span>
           </p>
           <EstateCardList state={data.estado} />
         </DataTaxi>
