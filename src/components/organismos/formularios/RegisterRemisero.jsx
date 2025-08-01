@@ -3,11 +3,14 @@ import styled from "styled-components";
 import { InputText } from "../../atomos/InputText";
 import { Btn } from "../../atomos/Btn";
 import { Select } from "../../atomos/Select";
-import { addUser } from "../../../helpers/AddUser";
-import { addVehiculo } from "../../../helpers/AddVehiculo";
-import { addRemisero } from "../../../helpers/AddRemisero";
+import { useUserStore } from "../../../store/UserStore";
+import { useVehiculosStore } from "../../../store/VehiculoStore";
+import { useRemiseroStore } from "../../../store/RemiseroStore";
 
 export function RegisterRemisero({ localidades }) {
+  const { newUser, idUser } = useUserStore();
+  const { newVehiculo, idVehiculo } = useVehiculosStore();
+  const { newRemisero } = useRemiseroStore();
   const [formData, setFormData] = useState({
     nombre: "",
     apellido: "",
@@ -28,34 +31,43 @@ export function RegisterRemisero({ localidades }) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    const idUser = addUser({
-      email: formData.email,
-      password: formData.password,
-      name: `${formData.nombre} ${formData.apellido}`,
-    });
-    const idVehiculo = addVehiculo({
-      patente: formData.patente,
-      marca: formData.marca,
-      modelo: formData.modelo,
-      año: formData.año,
-      color: formData.color,
-    });
 
-    if (idUser && idVehiculo) {
-      addRemisero({
-        nombre: formData.nombre,
-        apellido: formData.apellido,
-        dni: formData.dni,
-        telefono: formData.telefono,
+    try {
+      // Primero agregamos el usuario
+      const user = await newUser({
         email: formData.email,
-        foto_url: formData.foto_url,
-        id_vehiculo: idVehiculo,
-        id_usuario: idUser,
-        id_localidad: formData.localidad,
+        password: formData.password,
+        name: `${formData.nombre} ${formData.apellido}`,
       });
+
+      // Luego agregamos el vehículo
+      const vehiculo = await newVehiculo({
+        patente: formData.patente,
+        marca: formData.marca,
+        modelo: formData.modelo,
+        anio: formData.año,
+        color: formData.color,
+      });
+
+      console.log(user, vehiculo);
+      // Si ambos se crearon correctamente, agregamos el remisero
+      if (user && vehiculo) {
+        await newRemisero({
+          nombre: formData.nombre,
+          apellido: formData.apellido,
+          dni: formData.dni,
+          telefono: formData.telefono,
+          email: formData.email,
+          foto_url: formData.foto_url,
+          id_vehiculo: vehiculo,
+          id_usuario: user,
+          id_localidad: formData.localidad,
+        });
+      }
+    } catch (error) {
+      console.error("Error en el registro:", error);
     }
   };
 

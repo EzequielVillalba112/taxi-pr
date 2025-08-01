@@ -2,17 +2,19 @@ import { create } from "zustand";
 import { addVehiculo } from "../supabase/CrudVehiculos";
 
 export const useVehiculosStore = create((set) => ({
-  idVehiculo: null,
-  newVehiculo: async ({ patente, marca, modelo, año, color }) => {
+  idVehiculo: "",
+  newVehiculo: async ({ patente, marca, modelo, anio, color }) => {
     try {
       const vehiculo = await addVehiculo({
         p_patente: patente,
         p_marca: marca,
         p_modelo: modelo,
         p_color: color,
-        p_anio: año,
+        p_anio: anio,
       });
+      console.log("Vehiculo added:", vehiculo);
       set({ idVehiculo: vehiculo });
+      return vehiculo; 
     } catch (error) {
       console.error("Error creating vehiculo:", error);
     }

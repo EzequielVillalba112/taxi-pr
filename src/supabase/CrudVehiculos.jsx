@@ -7,5 +7,7 @@ export const addVehiculo = async (vehiculoData) => {
         console.error("Error adding vehiculo:", error);
         throw error;
     }
-    return true;
+    console.log("Vehiculo added successfully:", data);
+    
+    return data;
 }
