@@ -1,20 +1,19 @@
 import styled from "styled-components";
 import { IoHome } from "react-icons/io5";
-import { SlLogin } from "react-icons/sl";
 import { FaUser } from "react-icons/fa";
 import { FaUserPlus } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 import Logo from "../../assets/logo-taxi.png";
 import { Link, useNavigate } from "react-router-dom";
-import { useUserStore } from "../../store/UserStore";
 import { FaSignOutAlt } from "react-icons/fa";
 import { SUPABASE } from "../../supabase/SupaBase.config";
 import { userAuth } from "../../context/AuthContext";
+import { ImProfile } from "react-icons/im";
 
 export const Nav = () => {
   const [open, setOpen] = useState(false);
-  const {user} = userAuth();
- 
+  const { user } = userAuth();
+
   const navigate = useNavigate();
   const handleLogout = async () => {
     const { error } = await SUPABASE.auth.signOut();
@@ -27,9 +26,9 @@ export const Nav = () => {
     }
   };
 
-  const menuItems = [
+  const menuItemsLogin = [
     {
-      to: "/",
+      to: "/taxi-pr/",
       label: "Inicio",
       icon: <IoHome size={20} />,
     },
@@ -42,6 +41,24 @@ export const Nav = () => {
       to: "taxi-pr/register",
       label: "Registrarse",
       icon: <FaUserPlus size={20} />,
+    },
+  ];
+
+  const menuItemsLogout = [
+    {
+      to: "/taxi-pr/",
+      label: "Inicio",
+      icon: <IoHome size={20} />,
+    },
+    {
+      to: "#",
+      label: "Mi perfil",
+      icon: <ImProfile size={20} />,
+    },
+    {
+      to: "#",
+      label: "Cerrar sesión",
+      icon: <FaSignOutAlt size={20} />,
     },
   ];
 
@@ -58,27 +75,30 @@ export const Nav = () => {
       </div>
 
       <div className={`menu-container ${open ? "open" : ""}`}>
-        {menuItems.map((item, index) => (
-          <div
-            className={`menu-list ${
-              user && item.label === "Ingresar" ? "none" : ""
-            }`}
-            key={index}
-          >
-            <Link to={item.to} onClick={() => setOpen(false)}>
-              {item.icon}
-              {item.label}
-            </Link>
-          </div>
-        ))}
-        {user && (
-          <div className="menu-list">
-            <Link onClick={handleLogout}>
-              <FaSignOutAlt size={20} />
-              Cerrar sesión
-            </Link>
-          </div>
-        )}
+        {user
+          ? menuItemsLogout.map((item, index) => (
+              <div className={`menu-list `} key={index}>
+                <Link
+                  to={item.to}
+                  onClick={
+                    item.label === "Cerrar sesión"
+                      ? handleLogout
+                      : () => setOpen(false)
+                  }
+                >
+                  {item.icon}
+                  {item.label}
+                </Link>
+              </div>
+            ))
+          : menuItemsLogin.map((item, index) => (
+              <div className={`menu-list `} key={index}>
+                <Link to={item.to} onClick={() => setOpen(false)}>
+                  {item.icon}
+                  {item.label}
+                </Link>
+              </div>
+            ))}
       </div>
     </NavStyle>
   );

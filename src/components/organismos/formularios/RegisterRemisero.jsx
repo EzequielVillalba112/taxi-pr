@@ -11,12 +11,14 @@ import { capitalizeFirstLetter } from "../../../utils/CapitalizeFirst";
 import { MessageErrorInput } from "../../atomos/MessageErrorInput";
 import { AddUser } from "../../../hooks/AddUser";
 import { useNavigate } from "react-router-dom";
+import { StartLogin } from "../../../hooks/StartLogin";
+import { AlertSuccess } from "../../atomos/AlertSuccess";
 
 export function RegisterRemisero({ localidades }) {
   const { newUser, idUser } = useUserStore();
   const { newVehiculo, idVehiculo } = useVehiculosStore();
   const { newRemisero } = useRemiseroStore();
-  const [formData, setFormData] = useState({
+  const [dataForm, setDataForm] = useState({
     nombre: "",
     apellido: "",
     dni: "",
@@ -32,6 +34,7 @@ export function RegisterRemisero({ localidades }) {
     color: "",
   });
   const [error, setError] = useState({ estate: false, message: "" });
+  const { loginUser } = useUserStore();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -41,33 +44,46 @@ export function RegisterRemisero({ localidades }) {
     } else {
       data = capitalizeFirstLetter(e.target.value);
     }
-    setFormData({ ...formData, [e.target.name]: data });
+    setDataForm({ ...dataForm, [e.target.name]: data });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = validateRegisterForm(formData);
+    const res = validateRegisterForm(dataForm);
 
     if (res === true) {
-      const res = await AddUser(formData, newUser, newVehiculo, newRemisero);
-      res === true
-        ? setFormData({
-            nombre: "",
-            apellido: "",
-            dni: "",
-            telefono: "",
-            email: "",
-            foto_url: "sin foto",
-            localidad: "",
-            password: "",
-            patente: "",
-            marca: "",
-            modelo: "",
-            año: "",
-            color: "",
-          })
-        : setError({ estate: true, message: res });
+      const resAddUser = await AddUser(
+        dataForm,
+        newUser,
+        newVehiculo,
+        newRemisero
+      );
+      if (resAddUser === true) {
+        setDataForm({
+          nombre: "",
+          apellido: "",
+          dni: "",
+          telefono: "",
+          email: "",
+          foto_url: "sin foto",
+          localidad: "",
+          password: "",
+          patente: "",
+          marca: "",
+          modelo: "",
+          año: "",
+          color: "",
+        });
+        AlertSuccess("Usuario creado con exito");
+        navigate("/taxi-pr/login");
+        if (res === true) {
+        } else {
+          setError({ estate: true, message: res });
+        }
+      } else {
+        setError({ estate: true, message: resAddUser });
+      }
     } else {
       setError({ estate: true, message: res });
     }
@@ -85,7 +101,7 @@ export function RegisterRemisero({ localidades }) {
             <input
               type="text"
               name="nombre"
-              value={formData.nombre}
+              value={dataForm.nombre}
               onChange={handleChange}
               className="form__field"
               required
@@ -99,7 +115,7 @@ export function RegisterRemisero({ localidades }) {
             <input
               type="text"
               name="apellido"
-              value={formData.apellido}
+              value={dataForm.apellido}
               onChange={handleChange}
               className="form__field"
               required
@@ -113,7 +129,7 @@ export function RegisterRemisero({ localidades }) {
             <input
               type="text"
               name="dni"
-              value={formData.dni}
+              value={dataForm.dni}
               onChange={handleChange}
               className="form__field"
               required
@@ -127,7 +143,7 @@ export function RegisterRemisero({ localidades }) {
             <input
               type="text"
               name="telefono"
-              value={formData.telefono}
+              value={dataForm.telefono}
               onChange={handleChange}
               className="form__field"
               required
@@ -141,7 +157,7 @@ export function RegisterRemisero({ localidades }) {
             <input
               type="email"
               name="email"
-              value={formData.email}
+              value={dataForm.email}
               onChange={handleChange}
               className="form__field"
               required
@@ -151,7 +167,7 @@ export function RegisterRemisero({ localidades }) {
           <Select
             label="Localidad"
             name="localidad"
-            value={formData.localidad}
+            value={dataForm.localidad}
             onChange={handleChange}
             localidades={localidades}
           />
@@ -163,7 +179,7 @@ export function RegisterRemisero({ localidades }) {
             <input
               type="password"
               name="password"
-              value={formData.password}
+              value={dataForm.password}
               onChange={handleChange}
               className="form__field"
               required
@@ -181,7 +197,7 @@ export function RegisterRemisero({ localidades }) {
             <input
               type="text"
               name="patente"
-              value={formData.patente}
+              value={dataForm.patente}
               onChange={handleChange}
               className="form__field"
               required
@@ -194,7 +210,7 @@ export function RegisterRemisero({ localidades }) {
             <input
               type="text"
               name="marca"
-              value={formData.marca}
+              value={dataForm.marca}
               onChange={handleChange}
               className="form__field"
               required
@@ -207,7 +223,7 @@ export function RegisterRemisero({ localidades }) {
             <input
               type="text"
               name="modelo"
-              value={formData.modelo}
+              value={dataForm.modelo}
               onChange={handleChange}
               className="form__field"
               required
@@ -221,7 +237,7 @@ export function RegisterRemisero({ localidades }) {
             <input
               type="number"
               name="año"
-              value={formData.año}
+              value={dataForm.año}
               onChange={handleChange}
               className="form__field"
               required
@@ -235,7 +251,7 @@ export function RegisterRemisero({ localidades }) {
             <input
               type="text"
               name="color"
-              value={formData.color}
+              value={dataForm.color}
               onChange={handleChange}
               className="form__field"
               required

@@ -5,7 +5,7 @@ import { useUserStore } from "../../../store/UserStore";
 import { useState } from "react";
 import { MessageErrorInput } from "../../atomos/MessageErrorInput";
 import { useNavigate } from "react-router-dom";
-import { validateLogin } from "../../../utils/validation/ValidLogin";
+import { StartLogin } from "../../../hooks/StartLogin";
 
 export const LoginForm = () => {
   const { loginUser } = useUserStore();
@@ -20,20 +20,16 @@ export const LoginForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const res = validateLogin(dataForm.email, dataForm.password);
-
-      if (res === true) {
-        const res = await loginUser(dataForm.email, dataForm.password);
-        if (res.user) {
-          setDataForm({email:"", password:""});
-          navigate("/taxi-pr");
-        }
-      } else {
-        setError({ estate: true, message: res });
-      }
-    } catch (error) {
-      setError({ estate: true, message: error.message });
+    const res = await StartLogin(
+      loginUser,
+      dataForm,
+      navigate,
+      setError
+    );
+    if (res === true) {
+      setDataForm({ email: "", password: "" });
+    } else {
+      setError({ estate: true, message: res });
     }
   };
   return (
