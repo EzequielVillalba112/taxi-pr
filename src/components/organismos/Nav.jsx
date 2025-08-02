@@ -3,12 +3,29 @@ import { IoHome } from "react-icons/io5";
 import { SlLogin } from "react-icons/sl";
 import { FaUser } from "react-icons/fa";
 import { FaUserPlus } from "react-icons/fa6";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Logo from "../../assets/logo-taxi.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useUserStore } from "../../store/UserStore";
+import { FaSignOutAlt } from "react-icons/fa";
+import { SUPABASE } from "../../supabase/SupaBase.config";
+import { userAuth } from "../../context/AuthContext";
 
 export const Nav = () => {
   const [open, setOpen] = useState(false);
+  const {user} = userAuth();
+ 
+  const navigate = useNavigate();
+  const handleLogout = async () => {
+    const { error } = await SUPABASE.auth.signOut();
+
+    if (!error) {
+      setOpen(!open);
+      navigate("taxi-pr/"); // redirige al home
+    } else {
+      console.error("Error cerrando sesión:", error.message);
+    }
+  };
 
   const menuItems = [
     {
@@ -42,13 +59,26 @@ export const Nav = () => {
 
       <div className={`menu-container ${open ? "open" : ""}`}>
         {menuItems.map((item, index) => (
-          <div className="menu-list" key={index}>
+          <div
+            className={`menu-list ${
+              user && item.label === "Ingresar" ? "none" : ""
+            }`}
+            key={index}
+          >
             <Link to={item.to} onClick={() => setOpen(false)}>
               {item.icon}
               {item.label}
             </Link>
           </div>
         ))}
+        {user && (
+          <div className="menu-list">
+            <Link onClick={handleLogout}>
+              <FaSignOutAlt size={20} />
+              Cerrar sesión
+            </Link>
+          </div>
+        )}
       </div>
     </NavStyle>
   );
@@ -150,6 +180,10 @@ const NavStyle = styled.nav`
       align-items: center;
       gap: 10px;
     }
+  }
+
+  .none {
+    display: none !important;
   }
 
   .menu-list:hover {

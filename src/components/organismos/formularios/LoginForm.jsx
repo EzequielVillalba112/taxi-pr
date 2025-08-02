@@ -1,12 +1,30 @@
 import styled from "styled-components";
 import { Btn } from "../../atomos/Btn";
 import { InputText } from "../../atomos/InputText";
+import { useUserStore } from "../../../store/UserStore";
 
 export const LoginForm = () => {
+  const { loginUser } = useUserStore();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+    try {
+      const user = await loginUser({ email, password });
+      if (user) {
+        console.log(user);
+      } else {
+        console.log("Login failed");
+      }
+    } catch (error) {
+      console.error("Error logging in:", error);
+    }
+  };
   return (
     <ContainerLogin>
       <div className="img-login"></div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <h2>Iniciar Sesión</h2>
         <div className="input-container">
           <InputText>

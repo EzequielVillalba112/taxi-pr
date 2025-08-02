@@ -39,7 +39,8 @@ export function RegisterRemisero({ localidades }) {
       const user = await newUser({
         email: formData.email,
         password: formData.password,
-        name: `${formData.nombre} ${formData.apellido}`,
+        name: formData.nombre,
+        lastName: formData.apellido,
       });
 
       // Luego agregamos el vehículo
