@@ -6,6 +6,11 @@ import { Select } from "../../atomos/Select";
 import { useUserStore } from "../../../store/UserStore";
 import { useVehiculosStore } from "../../../store/VehiculoStore";
 import { useRemiseroStore } from "../../../store/RemiseroStore";
+import { validateRegisterForm } from "../../../utils/validation/ValidRegister";
+import { capitalizeFirstLetter } from "../../../utils/CapitalizeFirst";
+import { MessageErrorInput } from "../../atomos/MessageErrorInput";
+import { AddUser } from "../../../hooks/AddUser";
+import { useNavigate } from "react-router-dom";
 
 export function RegisterRemisero({ localidades }) {
   const { newUser, idUser } = useUserStore();
@@ -26,49 +31,45 @@ export function RegisterRemisero({ localidades }) {
     año: "",
     color: "",
   });
+  const [error, setError] = useState({ estate: false, message: "" });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    let data = "";
+    if (e.target.name === "patente") {
+      data = e.target.value.toUpperCase();
+    } else {
+      data = capitalizeFirstLetter(e.target.value);
+    }
+    setFormData({ ...formData, [e.target.name]: data });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      // Primero agregamos el usuario
-      const user = await newUser({
-        email: formData.email,
-        password: formData.password,
-        name: formData.nombre,
-        lastName: formData.apellido,
-      });
+    const res = validateRegisterForm(formData);
 
-      // Luego agregamos el vehículo
-      const vehiculo = await newVehiculo({
-        patente: formData.patente,
-        marca: formData.marca,
-        modelo: formData.modelo,
-        anio: formData.año,
-        color: formData.color,
-      });
-
-      console.log(user, vehiculo);
-      // Si ambos se crearon correctamente, agregamos el remisero
-      if (user && vehiculo) {
-        await newRemisero({
-          nombre: formData.nombre,
-          apellido: formData.apellido,
-          dni: formData.dni,
-          telefono: formData.telefono,
-          email: formData.email,
-          foto_url: formData.foto_url,
-          id_vehiculo: vehiculo,
-          id_usuario: user,
-          id_localidad: formData.localidad,
-        });
-      }
-    } catch (error) {
-      console.error("Error en el registro:", error);
+    if (res === true) {
+      const res = await AddUser(formData, newUser, newVehiculo, newRemisero);
+      res === true
+        ? setFormData({
+            nombre: "",
+            apellido: "",
+            dni: "",
+            telefono: "",
+            email: "",
+            foto_url: "sin foto",
+            localidad: "",
+            password: "",
+            patente: "",
+            marca: "",
+            modelo: "",
+            año: "",
+            color: "",
+          })
+        : setError({ estate: true, message: res });
+    } else {
+      setError({ estate: true, message: res });
     }
   };
 
@@ -241,7 +242,9 @@ export function RegisterRemisero({ localidades }) {
             />
           </InputText>
         </FormData>
-
+        {error.estate && (
+          <MessageErrorInput label={error.message} setError={setError} />
+        )}
         <Btn
           text="Registrar Taxi"
           type="submit"

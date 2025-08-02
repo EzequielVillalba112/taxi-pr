@@ -15,7 +15,7 @@ export const useUserStore = create((set) => ({
       console.error("Error creating user:", error);
     }
   },
-  loginUser: async ({ email, password }) => {
+  loginUser: async ( email, password ) => {
     const { data, error } = await SUPABASE.auth.signInWithPassword({
       email,
       password,

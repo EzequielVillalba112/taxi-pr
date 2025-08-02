@@ -2,23 +2,38 @@ import styled from "styled-components";
 import { Btn } from "../../atomos/Btn";
 import { InputText } from "../../atomos/InputText";
 import { useUserStore } from "../../../store/UserStore";
+import { useState } from "react";
+import { MessageErrorInput } from "../../atomos/MessageErrorInput";
+import { useNavigate } from "react-router-dom";
+import { validateLogin } from "../../../utils/validation/ValidLogin";
 
 export const LoginForm = () => {
   const { loginUser } = useUserStore();
+  const [error, setError] = useState({ estate: false, message: "" });
+  const [dataForm, setDataForm] = useState({ email: "", password: "" });
+
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setDataForm({ ...dataForm, [e.target.name]: e.target.value });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const email = e.target.email.value;
-    const password = e.target.password.value;
-
     try {
-      const user = await loginUser({ email, password });
-      if (user) {
-        console.log(user);
+      const res = validateLogin(dataForm.email, dataForm.password);
+
+      if (res === true) {
+        const res = await loginUser(dataForm.email, dataForm.password);
+        if (res.user) {
+          setDataForm({email:"", password:""});
+          navigate("/taxi-pr");
+        }
       } else {
-        console.log("Login failed");
+        setError({ estate: true, message: res });
       }
     } catch (error) {
-      console.error("Error logging in:", error);
+      setError({ estate: true, message: error.message });
     }
   };
   return (
@@ -34,6 +49,8 @@ export const LoginForm = () => {
             <input
               type="email"
               id="email"
+              value={dataForm.email}
+              onChange={handleChange}
               name="email"
               className="form__field"
               required
@@ -47,10 +64,15 @@ export const LoginForm = () => {
               type="password"
               id="password"
               name="password"
+              value={dataForm.password}
+              onChange={handleChange}
               className="form__field"
               required
             />
           </InputText>
+          {error.estate && (
+            <MessageErrorInput label={error.message} setError={setError} />
+          )}
         </div>
         <Btn
           text="Iniciar Sesión"

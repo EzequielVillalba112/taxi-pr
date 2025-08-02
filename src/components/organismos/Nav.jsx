@@ -21,7 +21,7 @@ export const Nav = () => {
 
     if (!error) {
       setOpen(!open);
-      navigate("taxi-pr/"); // redirige al home
+      navigate("/taxi-pr"); // redirige al home
     } else {
       console.error("Error cerrando sesión:", error.message);
     }

@@ -12,7 +12,6 @@ export const useVehiculosStore = create((set) => ({
         p_color: color,
         p_anio: anio,
       });
-      console.log("Vehiculo added:", vehiculo);
       set({ idVehiculo: vehiculo });
       return vehiculo; 
     } catch (error) {
