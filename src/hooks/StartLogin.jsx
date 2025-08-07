@@ -12,7 +12,7 @@ export const StartLogin = async (
     if (res === true) {
       const res = await loginUser(dataForm.email, dataForm.password);
       if (res.user) {
-        navigate("/taxi-pr");
+        navigate("/taxi-pr/");
       }
     } else {
       setError({ estate: true, message: res });

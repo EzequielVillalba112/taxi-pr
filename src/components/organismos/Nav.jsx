@@ -20,7 +20,7 @@ export const Nav = () => {
 
     if (!error) {
       setOpen(!open);
-      navigate("/taxi-pr"); // redirige al home
+      navigate("/taxi-pr/"); // redirige al home
     } else {
       console.error("Error cerrando sesión:", error.message);
     }
@@ -51,7 +51,7 @@ export const Nav = () => {
       icon: <IoHome size={20} />,
     },
     {
-      to: "#",
+      to: "taxi-pr/mi-perfil",
       label: "Mi perfil",
       icon: <ImProfile size={20} />,
     },

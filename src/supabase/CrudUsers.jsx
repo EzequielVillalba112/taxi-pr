@@ -20,7 +20,6 @@ export const createUser = async (email, password, name, lastName) => {
   const userId = data.user.id;
 
   return userId;
- 
 };
 
 export const loginUser = async (email, password) => {
@@ -35,6 +34,19 @@ export const loginUser = async (email, password) => {
   }
 
   console.log("User logged in successfully:", data);
+
+  return data;
+};
+
+export const dataUserId = async (p_id_user) => {
+  const { data, error } = await SUPABASE.rpc("obtener_remisero_por_user", {
+    p_id_user,
+  });
+
+  if (error) {
+    console.error("Error return data user:", error);
+    throw error;
+  }
 
   return data;
 };
