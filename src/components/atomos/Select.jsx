@@ -27,7 +27,10 @@ export const Select = ({ name, value, onChange, localidades, label }) => {
 const Container = styled.div`
   padding: 20px 0 0;
   width: 100%;
-
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 5px;
   .form__label {
     top: 0;
     display: block;

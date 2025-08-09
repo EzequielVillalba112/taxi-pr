@@ -24,7 +24,7 @@ export const useUserStore = create((set) => ({
       password,
     });
 
-    if (error) throw error;
+    if (error) return {message:error.message, error:error};
 
     const user = data.user;
     set({ dataUser: user });

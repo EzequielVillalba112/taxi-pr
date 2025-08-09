@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
-export const Btn = ({ text, type, bgcolor, color }) => {
+export const Btn = ({ text, type, bgcolor, color, icon = "" }) => {
   return (
     <BtnStyle type={type} $bgcolor={bgcolor} $color={color}>
+      {icon}
       {text}
     </BtnStyle>
   );
@@ -19,7 +20,10 @@ const BtnStyle = styled.button`
   font-size: 18px;
   font-weight: 600;
   letter-spacing: 1px;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 
   &:hover {
     scale: 1.05;

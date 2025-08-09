@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import { Home } from "./page/Home";
 import { Login } from "./page/Login";
@@ -8,15 +8,18 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { MyPerfil } from "./page/MyPerfil";
 
 function App() {
+  const { pathname } = useLocation();
+
   return (
     <>
-      <Nav />
+      {pathname != "/taxi-pr/login" && <Nav />}
+
       <Routes>
         <Route index element={<Home />} />
         <Route path="taxi-pr/" element={<Home />} />
         <Route path="taxi-pr/login" element={<Login />} />
         <Route path="taxi-pr/register" element={<Register />} />
-        <Route path="taxi-pr/mi-perfil" element={<MyPerfil/>}/>
+        <Route path="taxi-pr/mi-perfil" element={<MyPerfil />} />
       </Routes>
       <ReactQueryDevtools initialIsOpen={false} />
     </>

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { IoHome } from "react-icons/io5";
 import { FaUser } from "react-icons/fa";
 import { FaUserPlus } from "react-icons/fa6";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Logo from "../../assets/logo-taxi.png";
 import { Link, useNavigate } from "react-router-dom";
 import { FaSignOutAlt } from "react-icons/fa";
@@ -65,7 +65,9 @@ export const Nav = () => {
   return (
     <NavStyle>
       <div className="logo">
-        <img src={Logo} alt="Logo" />
+        <Link to={"/taxi-pr/"}>
+          <img src={Logo} alt="Logo" />
+        </Link>
       </div>
 
       <div className="menu-toggle" onClick={() => setOpen(!open)}>

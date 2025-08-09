@@ -1,7 +1,12 @@
 export const validateRegisterForm = (data) => {
   // Campos personales
   if (!data.nombre?.trim()) return "El nombre es obligatorio";
+  if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(data.nombre))
+    return "El nombre solo puede contener letras";
+
   if (!data.apellido?.trim()) return "El apellido es obligatorio";
+  if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(data.apellido))
+    return "El apellido solo puede contener letras";
 
   if (!data.dni?.trim()) {
     return "El DNI es obligatorio";

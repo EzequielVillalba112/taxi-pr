@@ -11,7 +11,7 @@ import { capitalizeFirstLetter } from "../../../utils/CapitalizeFirst";
 import { MessageErrorInput } from "../../atomos/MessageErrorInput";
 import { AddUser } from "../../../hooks/AddUser";
 import { useNavigate } from "react-router-dom";
-import { StartLogin } from "../../../hooks/StartLogin";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { AlertSuccess } from "../../atomos/AlertSuccess";
 
 export function RegisterRemisero({ localidades }) {
@@ -34,7 +34,7 @@ export function RegisterRemisero({ localidades }) {
     color: "",
   });
   const [error, setError] = useState({ estate: false, message: "" });
-  const { loginUser } = useUserStore();
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -104,6 +104,7 @@ export function RegisterRemisero({ localidades }) {
               value={dataForm.nombre}
               onChange={handleChange}
               className="form__field"
+              placeholder="Ingrese su nombre:"
               required
             />
           </InputText>
@@ -117,6 +118,7 @@ export function RegisterRemisero({ localidades }) {
               name="apellido"
               value={dataForm.apellido}
               onChange={handleChange}
+              placeholder="Ingrese su apellido:"
               className="form__field"
               required
             />
@@ -132,6 +134,7 @@ export function RegisterRemisero({ localidades }) {
               value={dataForm.dni}
               onChange={handleChange}
               className="form__field"
+              placeholder="Ingrese su D.N.I:"
               required
             />
           </InputText>
@@ -146,6 +149,7 @@ export function RegisterRemisero({ localidades }) {
               value={dataForm.telefono}
               onChange={handleChange}
               className="form__field"
+              placeholder="Ingrese su telefono:"
               required
             />
           </InputText>
@@ -159,6 +163,7 @@ export function RegisterRemisero({ localidades }) {
               name="email"
               value={dataForm.email}
               onChange={handleChange}
+              placeholder="Ingrese su email:"
               className="form__field"
               required
             />
@@ -176,14 +181,25 @@ export function RegisterRemisero({ localidades }) {
             <label htmlFor="password" className="form__label">
               Contraseña
             </label>
-            <input
-              type="password"
-              name="password"
-              value={dataForm.password}
-              onChange={handleChange}
-              className="form__field"
-              required
-            />
+
+            <div className="password-wrapper">
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                value={dataForm.password}
+                onChange={handleChange}
+                className="form__field"
+                placeholder="Ingrese su contraseña:"
+                required
+              />
+              <button
+                type="button"
+                className="toggle-password"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div>
           </InputText>
         </FormData>
 
@@ -199,9 +215,13 @@ export function RegisterRemisero({ localidades }) {
               name="patente"
               value={dataForm.patente}
               onChange={handleChange}
+              placeholder="Ingrese su patente:"
               className="form__field"
               required
             />
+            <label style={{fontSize:"14px", marginTop:"5px"}}>
+              Formato válido: <b>ABC 123</b> o <b>AB 123 CD</b>
+            </label>
           </InputText>
           <InputText>
             <label htmlFor="marca" className="form__label">
@@ -212,6 +232,7 @@ export function RegisterRemisero({ localidades }) {
               name="marca"
               value={dataForm.marca}
               onChange={handleChange}
+              placeholder="Ingrese la marca:"
               className="form__field"
               required
             />
@@ -225,6 +246,7 @@ export function RegisterRemisero({ localidades }) {
               name="modelo"
               value={dataForm.modelo}
               onChange={handleChange}
+              placeholder="Ingrese el modelo:"
               className="form__field"
               required
             />
@@ -239,6 +261,7 @@ export function RegisterRemisero({ localidades }) {
               name="año"
               value={dataForm.año}
               onChange={handleChange}
+              placeholder="Ingrese el año:"
               className="form__field"
               required
             />
@@ -253,6 +276,7 @@ export function RegisterRemisero({ localidades }) {
               name="color"
               value={dataForm.color}
               onChange={handleChange}
+              placeholder="Ingrese el color:"
               className="form__field"
               required
             />
@@ -273,7 +297,6 @@ export function RegisterRemisero({ localidades }) {
 }
 
 const FormContainer = styled.div`
-  max-width: 500px;
   margin: 40px auto;
   padding: 24px;
   background-color: #e6e6e6;
@@ -304,7 +327,7 @@ const StyledForm = styled.form`
 `;
 
 const FormData = styled.div`
-  width: 100%;
+  min-width: 250px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;

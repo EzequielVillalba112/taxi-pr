@@ -2,12 +2,13 @@ import { useQuery } from "@tanstack/react-query";
 import { RemiseroData } from "../components/organismos/RemiseroData";
 import { userAuth } from "../context/AuthContext";
 import { useUserStore } from "../store/UserStore";
-import { useLocalidadesStore } from "../store/LocalidadesStore";
 import styled from "styled-components";
+import { AutomovilData } from "../components/organismos/AutomovilData";
+import { useVehiculosStore } from "../store/VehiculoStore";
 
 export const MyPerfil = () => {
   const { dataUserSelect, dataUserSelectId } = useUserStore();
-  const { localidadUser, getLocalidad } = useLocalidadesStore();
+  const { getVehiculo, dataVehiculo } = useVehiculosStore();
   const { user } = userAuth();
 
   const { isLoading, error } = useQuery({
@@ -16,10 +17,20 @@ export const MyPerfil = () => {
     enabled: !!user?.id,
   });
 
+  const { isLoading: loadiAuto, error: errorAuto } = useQuery({
+    queryKey: ["data auto id"],
+    queryFn: async () => {
+      if (!dataUserSelect?.id_vehiculo) return null;
+      const result = await getVehiculo(dataUserSelect.id_vehiculo);
+      return result ?? null;
+    },
+    enabled: !!dataUserSelect?.id_vehiculo,
+  });
+
   return (
     <Container>
       <RemiseroData data={dataUserSelect} />
-      <Ej />
+      <AutomovilData data={dataVehiculo} />
     </Container>
   );
 };
@@ -30,14 +41,4 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
-`;
-
-const Ej = styled.div`
-  background-color: #f0f8ff;
-  min-height: 300px;
-  border-radius: 16px;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  padding: 40px;
 `;

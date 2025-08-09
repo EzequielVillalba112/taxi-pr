@@ -7,12 +7,36 @@ import { EstateCardList } from "../moleculas/EstateCardList";
 import { FaLocationDot } from "react-icons/fa6";
 
 export const CardList = ({ data }) => {
-  const sendWhatsApp = () => {
-    const numero = "+54 3743 585057"; // Reemplaza con tu número
-    const mensaje = "Hola, quiero hacer una consulta.";
-    const url = `https://api.whatsapp.com/send?phone=${numero}&text=${mensaje}`;
+  const sendWhatsApp = (telefono) => {
+    const numero = `+54${telefono}`; // quitamos el espacio para WhatsApp
 
-    window.open(url, "_blank"); // Abre en una nueva pestaña
+    const enviarConUbicacion = (mensaje) => {
+      const url = `https://api.whatsapp.com/send?phone=${numero}&text=${encodeURIComponent(
+        mensaje
+      )}`;
+      window.open(url, "_blank");
+    };
+
+    const mensajeBase = "Hola, quiero hacer una consulta.";
+
+    if (!navigator.geolocation) {
+      // Geolocalización no soportada, enviamos solo mensaje base
+      enviarConUbicacion(mensajeBase);
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const lat = position.coords.latitude.toFixed(6);
+        const lon = position.coords.longitude.toFixed(6);
+        const mensajeConUbicacion = `${mensajeBase} Mi ubicación actual es: https://www.google.com/maps?q=${lat},${lon}`;
+        enviarConUbicacion(mensajeConUbicacion);
+      },
+      (error) => {
+        // Si falla obtener ubicación, enviamos solo el mensaje base
+        enviarConUbicacion(mensajeBase);
+      }
+    );
   };
 
   return (
@@ -26,7 +50,7 @@ export const CardList = ({ data }) => {
           <p>
             <FaPhoneAlt /> <span>{data.telefono}</span>
           </p>
-           <p>
+          <p>
             <FaLocationDot /> <span>{data.localidad}</span>
           </p>
           <EstateCardList state={data.estado} />

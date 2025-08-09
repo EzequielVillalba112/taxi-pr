@@ -2,9 +2,10 @@ import styled from "styled-components";
 import { ImgUser } from "../atomos/ImgUser";
 import user from "../../assets/user.png";
 import { EstateCardList } from "../moleculas/EstateCardList";
+import { Btn } from "../atomos/Btn";
+import { FaEdit } from "react-icons/fa";
 
 export const RemiseroData = ({ data }) => {
-  console.log(data);
 
   return (
     <DataRemisero>
@@ -30,6 +31,8 @@ export const RemiseroData = ({ data }) => {
             Estado: <EstateCardList state={data.estado} />
           </li>
         </ul>
+
+        <Btn bgcolor={"#009dff"} text={"Editar Usuario"} color={"#ffff"} icon={<FaEdit/>}/>
       </DataUser>
     </DataRemisero>
   );
@@ -47,7 +50,10 @@ const DataRemisero = styled.div`
 
 const DataUser = styled.div`
   color: #242424;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: fit-content;
   ul {
     margin-left: 40px;
     list-style: none;
