@@ -320,7 +320,7 @@ Please change the parent <Route path="${z}"> to <Route path="${z==="/"?"*":`${z}
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;  
+  align-items: center;
   border-radius: 16px;
   color: #4b4b4b;
 
@@ -342,6 +342,11 @@ Please change the parent <Route path="${z}"> to <Route path="${z==="/"?"*":`${z}
     .input-container {
       width: 100%;
       margin-bottom: 20px;
+    }
+  }
+  @media (max-width: 480px) {
+    form {
+      width: 100%;
     }
   }
 `,$A=je.div`
@@ -374,6 +379,10 @@ Please change the parent <Route path="${z}"> to <Route path="${z==="/"?"*":`${z}
         color: #0c6bb9;
       }
     }
+  }
+
+  @media (max-width: 480px) {
+    width: 100%;
   }
 `,HA=()=>E.jsx(NA,{}),PA=({name:t,value:a,onChange:i,localidades:s,label:o})=>E.jsxs(GA,{children:[E.jsx("label",{htmlFor:t,className:"form__label",children:o}),E.jsxs("select",{name:t,value:a,onChange:i,className:"form__field",required:!0,children:[E.jsx("option",{value:"",children:"Seleccionar localidad"}),s.map(c=>E.jsx("option",{value:c.id,children:c.nombre},c.id))]})]}),GA=je.div`
   padding: 20px 0 0;
