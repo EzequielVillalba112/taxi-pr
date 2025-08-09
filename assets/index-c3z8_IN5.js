@@ -629,6 +629,11 @@ https://sweetalert2.github.io/#ajax-request`),CO(t),typeof t.title=="string"&&(t
   justify-content: space-evenly;
   align-items: center;
   padding: 40px;
+
+  @media (max-width: 980px) {
+    padding: 20px;
+    flex-direction: column;
+  }
 `,JO=je.div`
   color: #242424;
   display: flex;
@@ -653,6 +658,12 @@ https://sweetalert2.github.io/#ajax-request`),CO(t),typeof t.title=="string"&&(t
       span {
         font-weight: 700;
       }
+    }
+  }
+  @media (max-width: 980px) {
+    align-items: center;
+    ul {
+      margin-left: 0px;
     }
   }
 `,WO=({data:t})=>E.jsxs(eC,{children:[E.jsx("h2",{children:"Datos del Vehículo"}),E.jsxs("ul",{children:[E.jsxs("li",{children:["Marca: ",E.jsx("span",{children:t.marca})]}),E.jsxs("li",{children:["Modelo: ",E.jsx("span",{children:t.modelo})]}),E.jsxs("li",{children:["Patente: ",E.jsx("span",{children:t.patente})]}),E.jsxs("li",{children:["Color: ",E.jsx("span",{children:t.color})]}),E.jsxs("li",{children:["Año: ",E.jsx("span",{children:t.año})]})]}),E.jsx(fu,{bgcolor:"#009dff",text:"Editar Vehículo",color:"#ffff",icon:E.jsx(xv,{})})]}),eC=je.div`
@@ -685,10 +696,26 @@ https://sweetalert2.github.io/#ajax-request`),CO(t),typeof t.title=="string"&&(t
       }
     }
   }
+
+  @media (max-width: 980px) {
+    padding: 20px;
+    flex-direction: column;
+    align-items: center;
+    ul {
+      margin-left: 0px;
+    }
+  }
 `,tC=()=>{const{dataUserSelect:t,dataUserSelectId:a}=Xd(),{getVehiculo:i,dataVehiculo:s}=ow(),{user:o}=Yv(),{isLoading:c,error:d}=Po({queryKey:["data remisero id"],queryFn:()=>a(o?.id),enabled:!!o?.id}),{isLoading:p,error:h}=Po({queryKey:["data auto id"],queryFn:async()=>t?.id_vehiculo?await i(t.id_vehiculo)??null:null,enabled:!!t?.id_vehiculo});return E.jsxs(nC,{children:[E.jsx(ZO,{data:t}),E.jsx(WO,{data:s})]})},nC=je.div`
   width: 100%;
   margin-top: 20px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
+
+  @media (max-width: 990px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: 980px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `;function aC(){const{pathname:t}=Ra();return E.jsxs(E.Fragment,{children:[t!="/taxi-pr/login"&&E.jsx(KO,{}),E.jsxs(A_,{children:[E.jsx(or,{index:!0,element:E.jsx(wy,{})}),E.jsx(or,{path:"taxi-pr/",element:E.jsx(wy,{})}),E.jsx(or,{path:"taxi-pr/login",element:E.jsx(HA,{})}),E.jsx(or,{path:"taxi-pr/register",element:E.jsx(VO,{})}),E.jsx(or,{path:"taxi-pr/mi-perfil",element:E.jsx(tC,{})})]}),E.jsx(IO,{initialIsOpen:!1})]})}const iC=new P4;z2.createRoot(document.getElementById("root")).render(E.jsx(U.StrictMode,{children:E.jsx(X_,{children:E.jsx(E4,{children:E.jsx(K4,{client:iC,children:E.jsx(aC,{})})})})}));
