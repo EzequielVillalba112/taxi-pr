@@ -6,7 +6,6 @@ import { Btn } from "../atomos/Btn";
 import { FaEdit } from "react-icons/fa";
 
 export const RemiseroData = ({ data }) => {
-
   return (
     <DataRemisero>
       <ImgUser src={user} alt={"pr"} />
@@ -32,7 +31,12 @@ export const RemiseroData = ({ data }) => {
           </li>
         </ul>
 
-        <Btn bgcolor={"#009dff"} text={"Editar Usuario"} color={"#ffff"} icon={<FaEdit/>}/>
+        <Btn
+          bgcolor={"#009dff"}
+          text={"Editar Usuario"}
+          color={"#ffff"}
+          icon={<FaEdit />}
+        />
       </DataUser>
     </DataRemisero>
   );
@@ -46,6 +50,11 @@ const DataRemisero = styled.div`
   justify-content: space-evenly;
   align-items: center;
   padding: 40px;
+
+  @media (max-width: 980px) {
+    padding: 20px;
+    flex-direction: column;
+  }
 `;
 
 const DataUser = styled.div`
@@ -72,6 +81,12 @@ const DataUser = styled.div`
       span {
         font-weight: 700;
       }
+    }
+  }
+  @media (max-width: 980px) {
+    align-items: center;
+    ul {
+      margin-left: 0px;
     }
   }
 `;

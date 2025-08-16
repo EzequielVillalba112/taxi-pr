@@ -29,7 +29,7 @@ export const LoginForm = () => {
       setDataForm({ email: "", password: "" });
       navigate("/taxi-pr/");
     } else {
-      setError({ estate: true, message: res }); 
+      setError({ estate: true, message: res });
     }
   };
   return (
@@ -115,7 +115,7 @@ const ContainerLogin = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;  
+  align-items: center;
   border-radius: 16px;
   color: #4b4b4b;
 
@@ -137,6 +137,11 @@ const ContainerLogin = styled.div`
     .input-container {
       width: 100%;
       margin-bottom: 20px;
+    }
+  }
+  @media (max-width: 480px) {
+    form {
+      width: 100%;
     }
   }
 `;
@@ -171,5 +176,9 @@ const ContainerItemsNav = styled.div`
         color: #0c6bb9;
       }
     }
+  }
+
+  @media (max-width: 480px) {
+    width: 100%;
   }
 `;

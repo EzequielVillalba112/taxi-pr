@@ -3,7 +3,6 @@ import { Btn } from "../atomos/Btn";
 import { FaEdit } from "react-icons/fa";
 
 export const AutomovilData = ({ data }) => {
-
   return (
     <Container>
       <h2>Datos del Vehículo</h2>
@@ -24,7 +23,12 @@ export const AutomovilData = ({ data }) => {
           Año: <span>{data.año}</span>
         </li>
       </ul>
-       <Btn bgcolor={"#009dff"} text={"Editar Vehículo"} color={"#ffff"} icon={<FaEdit/>}/>
+      <Btn
+        bgcolor={"#009dff"}
+        text={"Editar Vehículo"}
+        color={"#ffff"}
+        icon={<FaEdit />}
+      />
     </Container>
   );
 };
@@ -57,6 +61,15 @@ const Container = styled.div`
       span {
         font-weight: 700;
       }
+    }
+  }
+
+  @media (max-width: 980px) {
+    padding: 20px;
+    flex-direction: column;
+    align-items: center;
+    ul {
+      margin-left: 0px;
     }
   }
 `;
