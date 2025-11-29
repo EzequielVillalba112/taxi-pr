@@ -1,7 +1,6 @@
 import { SUPABASE } from "./SupaBase.config";
 
 export const createUser = async (email, password, name, lastName) => {
-  // 1. Crear usuario en Auth
   const { data, error } = await SUPABASE.auth.signUp({
     email,
     password,
